@@ -3,15 +3,17 @@
 #include <fstream>
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/Polyhedron_3.h>
+#include <CGAL/Point_3.h>
+#include <CGAL/Vector_3.h>
 #include <CGAL/IO/Polyhedron_iostream.h>
-#include "triangulate.hpp"
+#include "precompilado.hpp"
 
 typedef CGAL::Exact_predicates_inexact_constructions_kernel Kernel;
 typedef CGAL::Polyhedron_3<Kernel> Polyhedron;
+typedef Kernel::Vector_3 Vector;
 typedef Kernel::Point_3 Point;
 typedef Polyhedron::Facet_iterator Facet_iterator;
 typedef Polyhedron::Halfedge_around_facet_circulator Facet_circulator;
-
 
 int main(int argc, char** argv) {
     if (argc != 2) {
@@ -47,26 +49,18 @@ int main(int argc, char** argv) {
     // Iterate over all faces and add the coordinates of its points
     for (Facet_iterator fi = poly.facets_begin(); fi != poly.facets_end(); ++fi) {
         Facet_circulator fc = fi->facet_begin();
-        Point p = fc->vertex()->point();
-        double p1x = p.x();
-        double p1y = p.y();
-        double p1z = p.z();
-        ++fc;
+        Point p1 = fc->vertex()->point();
+        Point p2 = (++fc)->vertex()->point();
+        Point p3 = (++fc)->vertex()->point();
 
-        p = fc->vertex()->point();
-        double p2x = p.x();
-        double p2y = p.y();
-        double p2z = p.z();
-        ++fc;
+        Vector u = p2 - p1;
+        Vector v = p3 - p1;
+        Vector n = CGAL::cross_product(u, v);
 
-        p = fc->vertex()->point();
-        double p3x = p.x();
-        double p3y = p.y();
-        double p3z = p.z();
-        ++fc;
-
-        
+        resultado += n.x() * (p1.x() * 3.0 + u.x() + v.x()) / 6;
     }
+    
+    std::cout << "Volumen del polihedro: " << resultado << std::endl;
 
     return 0;
 }

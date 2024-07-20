@@ -7,3 +7,5 @@ typedef CGAL::Polyhedron_3<Kernel> Polyhedron;
 
 void my_triangulate_faces(Polyhedron& poly);
 
+void my_orient(Polyhedron& poly);
+
