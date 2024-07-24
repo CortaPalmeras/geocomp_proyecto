@@ -20,16 +20,6 @@ endif()
 
 find_package(CGAL REQUIRED)
 
-add_library(
-    precompilado
-    precompilado.cpp
-)
-
-target_link_libraries(
-    precompilado
-    CGAL::CGAL
-)
-
 add_executable(
     poli
     poli.cpp
@@ -37,7 +27,6 @@ add_executable(
 
 target_link_libraries(
     poli
-    precompilado
     CGAL::CGAL
 )
 
