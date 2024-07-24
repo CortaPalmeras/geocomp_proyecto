@@ -17,10 +17,6 @@ typedef Polyhedron::Facet_iterator Facet_iterator;
 typedef Polyhedron::Halfedge_around_facet_circulator Facet_circulator;
 namespace PMP = CGAL::Polygon_mesh_processing;
 
-double cuad(double a_1, double a_2, double b_1, double b_2) {
-    return -((pow(a_2, 2) - pow(a_1, 2)) * (b_2 - b_1) * (b_2 + b_1)) / 4;
-}
-
 int main(int argc, char** argv) {
     if (argc != 2) {
         std::cerr << "Uso: " << argv[0] << " <input.off>" << std::endl;

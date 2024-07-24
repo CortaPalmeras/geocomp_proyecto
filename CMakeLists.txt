@@ -10,14 +10,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 set(CMAKE_BUILD_TYPE Release)
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    add_compile_options(
-        "-Wall"
-        "-Wextra"
-        "-Wpedantic"
-    )
-endif()
-
 find_package(CGAL REQUIRED)
 
 add_executable(
