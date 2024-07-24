@@ -19,7 +19,7 @@ make
 
 Para correr la tarea se debe pasar un archivo con formato `.off` con la descripción
 de una maya poligonal cerrada, varios ejemplos se pueden encontrar en 
-[ésta página](https://people.sc.fsu.edu/~jburkardt/data/off/off.html):
+[esta página](https://people.sc.fsu.edu/~jburkardt/data/off/off.html):
 ```bash
 ./poli ./ubicación/de/archivo.off
 ```
